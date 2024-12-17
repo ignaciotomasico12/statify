@@ -1,0 +1,115 @@
+import { ExtendedSession, ExtendedToken } from "@/types/auth/auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import SpotifyProvider from "next-auth/providers/spotify";
+
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || "";
+const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET || "";
+
+async function refreshAccessToken(token: ExtendedToken): Promise<ExtendedToken> {
+  try {
+    const url = "https://accounts.spotify.com/api/token";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${Buffer.from(
+          `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`
+        ).toString("base64")}`,
+      },
+      body: new URLSearchParams({
+        grant_type: "refresh_token",
+        refresh_token: token.refreshToken,
+      }),
+    });
+
+    const refreshedTokens = await response.json();
+
+    if (!response.ok) {
+      throw refreshedTokens;
+    }
+
+    return {
+      ...token,
+      accessToken: refreshedTokens.access_token,
+      refreshToken: refreshedTokens.refresh_token ?? token.refreshToken,
+      accessTokenExpires: Date.now() + refreshedTokens.expires_in * 1000,
+    };
+  } catch (error) {
+    console.error("Error refreshing access token", error);
+    return {
+      ...token,
+      error: "RefreshAccessTokenError",
+    };
+  }
+}
+
+const authOptions: NextAuthOptions = {
+    providers: [
+        SpotifyProvider({
+        clientId: SPOTIFY_CLIENT_ID,
+        clientSecret: SPOTIFY_CLIENT_SECRET,
+        authorization: {
+            url: "https://accounts.spotify.com/authorize",
+            params: {
+            scope: "user-read-email user-read-private user-top-read user-follow-read",
+            redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
+            },
+        },
+        }),
+    ],
+    secret: process.env.NEXTAUTH_SECRET || "",
+    session: {
+        strategy: "jwt",
+    },
+    cookies: {
+        sessionToken: {
+            name: "next-auth.session-token",
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+            },
+        },
+    },
+    callbacks: {
+        async jwt({ token, account, user }) {
+            let extendedToken: ExtendedToken = token as ExtendedToken;
+            if (account && user) {
+                extendedToken = {
+                    accessToken: account.access_token!,
+                    refreshToken: account.refresh_token!,
+                    accessTokenExpires: Date.now() + (account.expires_in as number) * 1000,
+                    user: user
+                };
+                return extendedToken;
+            }
+
+            if (Date.now() < extendedToken.accessTokenExpires) {
+                return extendedToken;
+            }
+            return await refreshAccessToken(extendedToken);
+        },
+        async session({ session, token }) {
+            const extendedToken = token as ExtendedToken;
+            const extendedSession: ExtendedSession = {
+                ...session,
+                accessToken: extendedToken.accessToken,
+                error: extendedToken.error,
+                user: extendedToken.user
+                
+            };
+            return extendedSession;
+        },
+        async redirect({ baseUrl }) {
+            return baseUrl;
+        }
+    },
+    pages: {
+        signIn: "/auth/signin",
+        signOut: "/auth/signin",
+    }
+};
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
