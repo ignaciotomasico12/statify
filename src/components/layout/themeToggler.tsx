@@ -11,12 +11,12 @@ export default function ThemeToggle() {
     <div>
       <div className="hidden dark:block">
         <Button variant="ghost" size="icon" onClick={() => setTheme("light")}>
-            <FiMoon />
+            <FiMoon className="w-4 h-4"/>
         </Button>
       </div>
       <div className="dark:hidden">
         <Button variant="ghost" size="icon" onClick={() => setTheme("dark")}>
-            <FiSun />
+            <FiSun className="w-4 h-4"/>
         </Button>
       </div>
     </div>

@@ -23,7 +23,7 @@ const Menubar = React.forwardRef<
   <MenubarPrimitive.Root
     ref={ref}
     className={cn(
-      "flex h-10 items-center rounded-md bg-background hover:bg-accent",
+      "flex h-10 items-center rounded-md bg-transparent dark:hover:bg-gray hover:bg-slate-200",
       className
     )}
     {...props}
@@ -38,7 +38,7 @@ const MenubarTrigger = React.forwardRef<
   <MenubarPrimitive.Trigger
     ref={ref}
     className={cn(
-      "h-full flex cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm font-medium outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
+      "h-full flex cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm font-medium outline-none dark:focus:bg-gray focus:bg-slate-200 dark:focus:text-gray-100 focus:text-slate-700 dark:data-[state=open]:bg-gray data-[state=open]:bg-slate-200 dark:data-[state=open]:text-gray-100 data-[state=open]:text-slate-700",
       className
     )}
     {...props}
@@ -97,7 +97,7 @@ const MenubarContent = React.forwardRef<
         alignOffset={alignOffset}
         sideOffset={sideOffset}
         className={cn(
-          "z-50 min-w-[12rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          "z-50 min-w-[12rem] shadow-lg overflow-hidden rounded-md border dark:border-gray dark:bg-dark bg-slate-100 p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
           className
         )}
         {...props}
@@ -117,7 +117,7 @@ const MenubarItem = React.forwardRef<
   <MenubarPrimitive.Item
     ref={ref}
     className={cn(
-      `relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none ${variant === 'error' ? 'focus:bg-red-300/15 focus:text-red-500' : 'focus:bg-accent focus:text-accent-foreground'} data-[disabled]:pointer-events-none data-[disabled]:opacity-50`,
+      `relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none ${variant === 'error' ? 'focus:bg-red-300/15 focus:text-red-500' : 'dark:focus:bg-gray focus:bg-slate-300 dark:focus:text-gray-100 focus:text-slate-700'} data-[disabled]:pointer-events-none data-[disabled]:opacity-50`,
       inset && "pl-8",
       className
     )}

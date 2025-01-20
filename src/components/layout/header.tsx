@@ -1,25 +1,28 @@
 "use client";
 import Image from "next/image";
 import ThemeToggle from "./themeToggler"
+import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useTranslations } from 'next-intl';
-import { FiPower, FiUser } from "react-icons/fi";
+import { FiPower } from "react-icons/fi";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarTrigger } from "../ui/menubar";
+import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "../ui/menubar";
 
 export default function Header(){
     const { data: session  } = useSession();
     const t = useTranslations('app.layout.header');
     return(
-        <header className="fixed top-0 left-0 w-full">
-            <div className="w-full py-5 px-20 flex justify-between items-center">
-                <Image
-                    src="/statify.svg"
-                    alt="Next.js logo"
-                    width={120}
-                    height={18}
-                    priority
-                />
+        <header className="sticky top-0 left-0 w-full z-10 bg-transparent backdrop-filter backdrop-blur-lg bg-opacity-50 border-b dark:border-gray-800/50 border-slate-300/50">
+            <div className="px-5 md:px-20 lg:px-32 xl:px-40 w-full py-3 flex justify-between items-center">
+                <Link href="/">
+                    <Image
+                        src="/statify.svg"
+                        alt="Next.js logo"
+                        width={120}
+                        height={18}
+                        priority
+                    />
+                </Link>
                 <div className="flex justify-end items-center gap-2">
                     <ThemeToggle />
                     {session &&
@@ -33,14 +36,12 @@ export default function Header(){
                                     </Avatar>
                                 </MenubarTrigger>
                                 <MenubarContent>
-                                    <MenubarItem className="flex justify-start items-center gap-3"><FiUser/> {t('profile.menu.profile')}</MenubarItem>
-                                    <MenubarSeparator />
                                     <MenubarItem 
                                         variant="error"
                                         className="flex justify-start items-center gap-3"
                                         onClick={() => signOut()}
                                     >
-                                        <FiPower/> {t('profile.menu.logOut')}
+                                        <FiPower className="w-4 h-4"/> {t('profile.menu.logOut')}
                                     </MenubarItem>       
                                 </MenubarContent>
                             </MenubarMenu>

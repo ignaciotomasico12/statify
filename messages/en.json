@@ -4,6 +4,14 @@
             "pageTitle": "Log in with Spotify",
             "signInButton": "Log In"
         }
+    }, 
+    "ui":{
+        "pagination":{
+            "showing": "Showing",
+            "of": "of",
+            "items": "Items per page",
+            "page": "Page"
+        }
     },
     "app":{
         "layout":{
@@ -14,6 +22,63 @@
                         "logOut": "Log Out"
                     }
                 }
+            }
+        },
+        "home": {
+            "userCard":{
+                "title": "User Details",
+                "spotifyLink": "Spotify Profile",
+                "details": {
+                    "followers": "Followers",
+                    "country": "Country",
+                    "product": "Account",
+                    "email": "Email"
+                },
+                "stats": {
+                    "artists": "Followed Artists",
+                    "tracks": "Saved Tracks",
+                    "playlists": "Playlists",
+                    "shows": "Saved Podcasts"
+                }
+            },
+            "userStats":{
+                "artists":{
+                    "title": "Artists",
+                    "tabs": {
+                        "followed": "Followed artists",
+                        "top_last_month": "Top last month",
+                        "top_last_six_months": "Top last six months",
+                        "top_all_times": "Top all times"
+                    }
+                },
+                "tracks":{
+                    "title": "Tracks",
+                    "tabs": {
+                        "liked": "Saved tracks",
+                        "top_last_month": "Top last month",
+                        "top_last_six_months": "Top last six months",
+                        "top_all_times": "Top all times"
+                    }
+                },
+                "playlists":{
+                    "title": "Playlists"
+                },
+                "shows":{
+                    "title": "Shows"
+                }
+            }
+        },
+        "artist":{
+            "title": "Artist Details",
+            "follow": "Follow",
+            "unfollow": "Unfollow",
+            "show": "Open on Spotify",
+            "showWeb": "Open on browser",
+            "followers": "Followers",
+            "popularity": "Popularity",
+            "followButton": {
+                "follow": "Follow",
+                "unfollow": "Following"
             }
         }
     }

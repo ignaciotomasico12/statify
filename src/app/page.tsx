@@ -1,22 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { ExtendedSession } from "@/types/auth";
+import UserCard from "@/components/app/home/userCard";
+import UserStats from "@/components/app/home/userStats";
+
 
 export default function Home() {
-  const { data: session, status  } = useSession();
+    const { data: session, status } = useSession() as { data: ExtendedSession | null, status: "loading" | "authenticated" | "unauthenticated" };
+    const [ selectedStats, setSelectedStats ] = useState<'artists' | 'shows' | 'tracks' | 'playlists'>("artists");
 
-  if (status === "loading") {
-    return <p>Cargando...</p>;
-  }
+    if (status === "loading") {
+        return <p>Cargando...</p>;
+    }
 
-  if (!session) {
-    window.location.href = "/auth/signin";
-    return null;
-  }
+    if (!session) {
+        window.location.href = "/auth/signin";
+        return null;
+    }
 
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-
-    </div>
-  );
+    if(session && session.user) {
+        return (
+            <div className="w-full">
+                <UserCard user={session.user} setStats={setSelectedStats}/>
+                <UserStats selectedStats={selectedStats}/>
+            </div>
+        )
+    }
 }

@@ -1,4 +1,3 @@
-
 module.exports = {
     darkMode: ["class"],
     content: [
@@ -9,6 +8,7 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
+				dark: 'hsl(var(--dark))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {
@@ -38,6 +38,10 @@ module.exports = {
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
+				},
+				gray : {
+					DEFAULT: 'hsl(var(--gray))',
+					foreground: 'hsl(var(--gray-foreground))'
 				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

@@ -1,5 +1,5 @@
 import { getCurrentUserProfile } from "@/services/users";
-import { ExtendedSession, ExtendedToken } from "@/types/auth/auth";
+import { ExtendedSession, ExtendedToken } from "@/types/auth";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 
@@ -52,7 +52,7 @@ const authOptions: NextAuthOptions = {
       authorization: {
         url: "https://accounts.spotify.com/authorize",
         params: {
-          scope: "user-read-email user-read-private user-top-read user-follow-read",
+          scope: "user-read-email user-read-private user-top-read user-follow-modify user-follow-read user-library-read user-read-recently-played playlist-read-private" ,
           redirect_uri: process.env.SPOTIFY_REDIRECT_URI
         },
       }
@@ -99,10 +99,16 @@ const authOptions: NextAuthOptions = {
         error: extendedToken.error,
         user: {
           ...extendedToken.user,
-          locale: userProfile.country.toLowerCase()
+          locale: userProfile.country.toLowerCase(),
+          id: userProfile.id,
+          displayName: userProfile.display_name,
+          email: userProfile.email,
+          followers: userProfile.followers,
+          spotifyUrl: userProfile.external_urls.spotify,
+          accountType: userProfile.product,
         }
       };
-      return extendedSession;
+      return extendedSession as ExtendedSession;
     },
     async redirect({ baseUrl }) {
       return baseUrl;

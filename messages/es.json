@@ -5,6 +5,14 @@
             "signInButton": "Iniciar sesión"
         }
     },
+    "ui":{
+        "pagination":{
+            "showing": "Mostrando",
+            "of": "de",
+            "items": "Mostrar por página",
+            "page": "Página"
+        }
+    },
     "app":{
         "layout":{
             "header":{
@@ -14,6 +22,63 @@
                         "logOut": "Cerrar sesión"
                     }
                 }
+            }
+        },
+        "home": {
+            "userCard":{
+                "title": "Detalles del usuario",
+                "spotifyLink": "Perfil de Spotify",
+                "details": {
+                    "followers": "Seguidores",
+                    "country": "País",
+                    "product": "Cuenta",
+                    "email": "Email"
+                },
+                "stats": {
+                    "artists": "Artistas que sigues",
+                    "tracks": "Canciones que te gustan",
+                    "playlists": "Tus Playlists",
+                    "shows": "Podcasts que sigues"
+                }
+            },
+            "userStats":{
+                "artists":{
+                    "title": "Artistas",
+                    "tabs": {
+                        "followed": "Artistas que sigues",
+                        "top_last_month": "Top del último mes",
+                        "top_last_six_months": "Top de los últimos seis meses",
+                        "top_all_times": "Top de todos los tiempos"
+                    }
+                },
+                "tracks":{
+                    "title": "Canciones",
+                    "tabs": {
+                        "liked": "Canciones que te gustan",
+                        "top_last_month": "Top del último mes",
+                        "top_last_six_months": "Top de los últimos seis meses",
+                        "top_all_times": "Top de todos los tiempos"
+                    }
+                },
+                "playlists":{
+                    "title": "Playlists"
+                },
+                "shows":{
+                    "title": "Podcasts"
+                }
+            }
+        },
+        "artist":{
+            "title": "Detalles del Artista",
+            "follow": "Seguir",
+            "unfollow": "Dejar de seguir",
+            "show": "Abrir en Spotify",
+            "showWeb": "Abrir en navegador",
+            "followers": "Seguidores",
+            "popularity": "Popularidad",
+            "followButton": {
+                "follow": "Seguir",
+                "unfollow": "Siguiendo"
             }
         }
     }
