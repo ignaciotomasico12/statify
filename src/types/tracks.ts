@@ -5,6 +5,10 @@ export interface SavedTracks extends ListProps {
     items: Tracks[]
 }
 
+export interface TopTracks extends ListProps {
+    items: Track[]
+}
+
 export interface Tracks {
     added_at: string,
     track: Track
@@ -22,7 +26,7 @@ export interface Track {
     href: string,
     id: string,
     is_playable: boolean,
-    linked_from?: string, 
+    linked_from?: string,
     restrictions?: {
         reason: string
     },

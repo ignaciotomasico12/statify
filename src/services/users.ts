@@ -2,7 +2,7 @@ import { fetchWebApi } from "@/lib/utils";
 import { FollowedArtists, TopArtists } from "@/types/artists";
 import { UserPlaylists } from "@/types/playlits";
 import { SavedShows } from "@/types/shows";
-import { SavedTracks } from "@/types/tracks";
+import { SavedTracks, TopTracks } from "@/types/tracks";
 
 export async function getCurrentUserProfile(accessToken: string) {
   return (await fetchWebApi(
@@ -29,9 +29,9 @@ export async function getCurrentUserTopArtists(accessToken: string, timeRange: '
   )) as TopArtists;
 }
 
-export async function getCurrentUserSavedTracks(accessToken: string) {
+export async function getCurrentUserSavedTracks(accessToken: string, limit: number = 20, offset: number = 0) {
   return (await fetchWebApi(
-    'v1/me/tracks', accessToken, 'GET'
+    `v1/me/tracks?limit=${limit}&offset=${offset}`, accessToken, 'GET'
   )) as SavedTracks;
 }
 
@@ -45,4 +45,16 @@ export async function getCurrentUserPlaylists(accessToken: string, userId: strin
   return (await fetchWebApi(
     `v1/users/${userId}/playlists?limit=${limit}&offset=${offset}`, accessToken, 'GET'
   )) as UserPlaylists;
+}
+
+export async function getCurrentUserTopTracks(accessToken: string, timeRange: 'short_term' | 'medium_term' | 'long_term', size: number = 10, offset: number = 0) {
+  return (await fetchWebApi(
+    `v1/me/top/tracks?time_range=${timeRange}&limit=${size}&offset=${offset}`, accessToken, 'GET'
+  )) as TopTracks;
+}
+
+export async function searchTracks(accessToken: string, query: string) {
+  return (await fetchWebApi(
+    `v1/search?q=${encodeURIComponent(query)}&type=track&limit=5`, accessToken, 'GET'
+  )) as { tracks: { items: import("@/types/tracks").Track[] } };
 }

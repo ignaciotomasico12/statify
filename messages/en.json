@@ -55,6 +55,8 @@
                 },
                 "tracks":{
                     "title": "Tracks",
+                    "search": "Search tracks...",
+                    "no_results": "No results found",
                     "tabs": {
                         "liked": "Saved tracks",
                         "top_last_month": "Top last month",

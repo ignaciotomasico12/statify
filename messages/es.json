@@ -55,6 +55,8 @@
                 },
                 "tracks":{
                     "title": "Canciones",
+                    "search": "Buscar canciones...",
+                    "no_results": "No hay resultados",
                     "tabs": {
                         "liked": "Canciones que te gustan",
                         "top_last_month": "Top del último mes",
