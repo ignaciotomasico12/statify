@@ -21,7 +21,7 @@ export default function Header(){
                         width={100}
                         height={15}
                         priority
-                        className="sm:w-[120px] sm:h-[18px]"
+                        className="w-[120px] h-[18px] md:h-[40px]"
                     />
                 </Link>
                 <div className="flex justify-end items-center gap-1 sm:gap-2">
