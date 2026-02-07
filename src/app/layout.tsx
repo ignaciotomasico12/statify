@@ -33,7 +33,7 @@ export default async function RootLayout({
       <body
         className={`${monserrat.variable} antialiased`}
       >
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <Theme>
               <div className="fixed left-0 top-0 -z-10 h-screen w-screen">

@@ -44,6 +44,8 @@
             "userStats":{
                 "artists":{
                     "title": "Artistas",
+                    "search": "Buscar artistas...",
+                    "no_results": "No hay resultados",
                     "tabs": {
                         "followed": "Artistas que sigues",
                         "top_last_month": "Top del último mes",
@@ -79,7 +81,20 @@
             "followButton": {
                 "follow": "Seguir",
                 "unfollow": "Siguiendo"
-            }
+            },
+            "top_tracks": "Canciones populares",
+            "top_albums": "Álbumes populares"
+        },
+        "artists": {
+            "no_data_found": "No se han encontrado artistas",
+            "try_different_period": "Prueba con un periodo de tiempo diferente o vuelve a consultar más tarde."
+        },
+        "playlists": {
+            "title": "Mis Playlists",
+            "tracks": "canciones",
+            "no_data_found": "No se han encontrado playlists",
+            "show": "Abrir en Spotify",
+            "showWeb": "Abrir en navegador"
         }
     }
 }

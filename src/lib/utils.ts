@@ -30,9 +30,15 @@ export async function fetchWebApi(endpoint: string, token: string, method: strin
     console.error('Detalles del error:', errorDetails);
     throw new Error(`Error en la llamada: ${errorDetails.error?.message || res.statusText}`);
   }
-  if(res.status === 200) {
+  if (res.status === 200) {
     return res.json()
   } else {
     return res
   }
 }
+
+export const msToTime = (ms: number) => {
+  const minutes = Math.floor(ms / 60000);
+  const seconds = ((ms % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (Number(seconds) < 10 ? '0' : '') + seconds;
+};

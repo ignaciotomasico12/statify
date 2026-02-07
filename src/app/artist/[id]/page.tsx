@@ -9,6 +9,8 @@ import { /*getArtistAlbums, getArtistRelatedArtists, getArtistTopTracks, */ getO
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import ArtistCard from "@/components/app/artists/artistCard";
 import { getCurrentUserFollowsArtist } from '@/services/users';
+import ArtistTopTracks from "@/components/app/artists/artistTopTracks";
+import ArtistAlbums from "@/components/app/artists/artistAlbums";
 
 interface ArtistPageProps {
     params: Promise<{ id: string }>;
@@ -74,6 +76,8 @@ const ArtistPage = ({ params }: ArtistPageProps) => {
                         </Breadcrumb>
                     </div>
                     <ArtistCard artist={data.artist} isFollowed={data.isFollowedArtist[0]}/>
+                    {uuid && <ArtistAlbums artistId={uuid} />}
+                    {uuid && <ArtistTopTracks artistId={uuid} />}
                 </>
             }
         </div>

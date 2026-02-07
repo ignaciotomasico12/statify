@@ -54,19 +54,18 @@ export function ArtistListItem({
 
 
   const cardContent = (
-    <div className={cn("space-y-3 cursor-pointer", className)} {...props}>
+    <div className={cn("space-y-3 cursor-pointer group", className)} {...props}>
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="overflow-hidden rounded-md">
+          <div className={cn(
+            "overflow-hidden rounded-md relative w-full shadow-md bg-slate-200 dark:bg-dark-light",
+            aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
+          )}>
             <Image
-              src={artist.images[0].url}
+              src={artist.images[0]?.url || "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=300&auto=format&fit=crop"}
               alt={artist.name}
-              width={width}
-              height={height}
-              className={cn(
-                "h-auto w-auto object-cover transition-all hover:scale-105",
-                aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
-              )}
+              fill
+              className="object-cover transition-all group-hover:scale-105"
             />
           </div>
         </ContextMenuTrigger>
@@ -93,8 +92,12 @@ export function ArtistListItem({
         </ContextMenuContent>
       </ContextMenu>
       <div className="space-y-1 text-sm">
-        <h3 className="font-medium leading-none">{index + 1}. {artist.name}</h3>
-        <p className="text-xs text-muted-foreground">{formatFollowers(artist.followers.total)} {t('followers')}</p>
+        <h3 className="font-semibold leading-none truncate group-hover:text-primary transition-colors">
+            {index + 1}. {artist.name}
+        </h3>
+        <p className="text-xs text-muted-foreground truncate">
+            {formatFollowers(artist.followers.total)} {t('followers')}
+        </p>
       </div>
     </div>
   );

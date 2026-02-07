@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl";
 import ArtistsTabs from "../artists/artistsTabs";
 import TracksTabs from "../tracks/tracksTabs";
+import ArtistSearch from "../artists/artistSearch";
+import PlaylistsList from "../playlists/playlistsList";
 
 interface UserStatsProps {
     selectedStats: 'artists' | 'shows' | 'tracks' | 'playlists';
@@ -15,6 +17,7 @@ export default function UserStats({selectedStats}: UserStatsProps) {
                     <div className="h-8 w-2 bg-primary rounded-xl"/>
                     <h2 className="text-2xl capitalize">{t(`${selectedStats}.title`)}</h2>
                 </div>
+                {selectedStats === 'artists' && <ArtistSearch />}
             </header>
             <div>
                 {selectedStats && selectedStats === 'artists' &&
@@ -22,6 +25,9 @@ export default function UserStats({selectedStats}: UserStatsProps) {
                 }
                 {selectedStats && selectedStats === 'tracks' &&
                     <TracksTabs /> 
+                }
+                {selectedStats && selectedStats === 'playlists' &&
+                    <PlaylistsList />
                 }
             </div>
         </div>

@@ -44,6 +44,8 @@
             "userStats":{
                 "artists":{
                     "title": "Artists",
+                    "search": "Search artists...",
+                    "no_results": "No results found",
                     "tabs": {
                         "followed": "Followed artists",
                         "top_last_month": "Top last month",
@@ -79,7 +81,20 @@
             "followButton": {
                 "follow": "Follow",
                 "unfollow": "Following"
-            }
+            },
+            "top_tracks": "Popular tracks",
+            "top_albums": "Popular albums"
+        },
+        "artists": {
+            "no_data_found": "No artists found",
+            "try_different_period": "Try a different time period or check back later."
+        },
+        "playlists": {
+            "title": "My Playlists",
+            "tracks": "tracks",
+            "no_data_found": "No playlists found",
+            "show": "Open on Spotify",
+            "showWeb": "Open on browser"
         }
     }
 }

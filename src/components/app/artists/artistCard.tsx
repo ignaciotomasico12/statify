@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link";
 import { FiExternalLink, FiHeart} from "react-icons/fi";
 import { FaHeart } from "react-icons/fa6";
+import { MdVerified } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { Artist } from "@/types/artists";
@@ -55,7 +56,10 @@ export default function ArtistCard({artist, isFollowed}: ArtistCardProps) {
                 </div>
                 <div className="flex flex-col justify-between items-start gap-8 w-full h-full">
                     <div className="flex flex-col justify-start items-start gap-2">
-                        <h2 className="text-2xl">{artist.name}</h2>
+                        <div className="flex items-center gap-2">
+                            <h2 className="text-2xl font-bold">{artist.name}</h2>
+                            <MdVerified className="text-blue-500 w-6 h-6" title="Verified Artist" />
+                        </div>
                         <div className="flex justify-start items-center gap-4 mb-2">
                             {artist.genres.map((genre, index) => ( 
                                 <Badge key={index} className="capitalize">{genre}</Badge>

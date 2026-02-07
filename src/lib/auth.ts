@@ -53,7 +53,6 @@ export const authOptions: NextAuthOptions = {
                 url: "https://accounts.spotify.com/authorize",
                 params: {
                     scope: "user-read-email user-read-private user-top-read user-follow-modify user-follow-read user-library-read user-read-recently-played playlist-read-private",
-                    redirect_uri: process.env.SPOTIFY_REDIRECT_URI
                 },
             }
         }),
@@ -61,16 +60,6 @@ export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET || "",
     session: {
         strategy: "jwt",
-    },
-    cookies: {
-        sessionToken: {
-            name: "next-auth.session-token",
-            options: {
-                httpOnly: true,
-                sameSite: "lax",
-                path: "/",
-            },
-        },
     },
     callbacks: {
         async jwt({ token, account, user }) {
