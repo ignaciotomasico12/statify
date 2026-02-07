@@ -50,18 +50,18 @@ const ArtistAlbums = ({ artistId }: ArtistAlbumsProps) => {
     }, []);
 
     return (
-        <div className="mt-8 p-4 md:p-8 lg:p-10 w-full rounded-lg bg-slate-50 dark:bg-dark shadow-lg font-sans">
-            <div className="flex justify-start items-center gap-4 mb-6">
-                <div className="h-8 w-2 bg-primary rounded-xl" />
-                <h2 className="text-2xl font-semibold">{t('top_albums')}</h2>
+        <div className="mt-6 sm:mt-8 p-3 sm:p-4 md:p-8 lg:p-10 w-full rounded-lg bg-slate-50 dark:bg-dark shadow-lg font-sans">
+            <div className="flex justify-start items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                <div className="h-6 sm:h-8 w-2 bg-primary rounded-xl" />
+                <h2 className="text-xl sm:text-2xl font-semibold">{t('top_albums')}</h2>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-6">
                 {uniqueAlbums.slice(0, 6).map((album) => (
                     <Link 
                         key={album.id} 
                         href={album.external_urls.spotify}
                         target="_blank"
-                        className="flex flex-col gap-3 group transition-transform hover:scale-105"
+                        className="flex flex-col gap-2 sm:gap-3 group transition-transform hover:scale-105"
                     >
                         <div className="relative aspect-square overflow-hidden rounded-md shadow-md">
                             <Image
@@ -72,10 +72,10 @@ const ArtistAlbums = ({ artistId }: ArtistAlbumsProps) => {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-sm font-semibold truncate dark:text-gray-100 group-hover:text-primary transition-colors">
+                            <span className="text-xs sm:text-sm font-semibold truncate dark:text-gray-100 group-hover:text-primary transition-colors">
                                 {album.name}
                             </span>
-                            <span className="text-xs text-slate-500 dark:text-gray-400">
+                            <span className="text-[10px] sm:text-xs text-slate-500 dark:text-gray-400">
                                 {new Date(album.release_date).getFullYear()}
                             </span>
                         </div>

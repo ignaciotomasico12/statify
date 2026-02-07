@@ -119,7 +119,7 @@ export default function ArtistsList({listType = 'followed'}: ListProps) {
                         </p>
                     </div>
                 ) : (
-                    <div className={`grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 max-h-[58rem] overflow-y-scroll pb-8 ${(pagination.pageSize >= 20 && pagination.totalItems >= 20) ? 'pr-4' : ''}`}>
+                    <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-3 sm:gap-4 mt-4 max-h-[58rem] overflow-y-scroll pb-8 ${(pagination.pageSize >= 20 && pagination.totalItems >= 20) ? 'pr-2 sm:pr-4' : ''}`}>
                         {artistsQuery.isLoading ? (
                             Array.from({ length: 10 }).map((_, i) => (
                                 <div key={i} className="w-full aspect-square bg-gray-800/10 animate-pulse rounded-md" />

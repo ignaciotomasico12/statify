@@ -64,7 +64,7 @@ export default function PlaylistsList() {
                         </p>
                     </div>
                 ) : (
-                    <div className={`grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 max-h-[58rem] overflow-y-scroll pb-8 px-1`}>
+                    <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-3 sm:gap-6 mt-4 max-h-[58rem] overflow-y-scroll pb-8 px-1`}>
                         {playlistsQuery.isLoading ? (
                             Array.from({ length: 10 }).map((_, i) => (
                                 <div key={i} className="flex flex-col gap-3">

@@ -40,10 +40,10 @@ const ArtistTopTracks = ({ artistId }: ArtistTopTracksProps) => {
     }
 
     return (
-        <div className="mt-8 p-4 md:p-8 lg:p-10 w-full rounded-lg bg-slate-50 dark:bg-dark shadow-lg">
-            <div className="flex justify-start items-center gap-4 mb-8">
-                <div className="h-8 w-2 bg-primary rounded-xl" />
-                <h2 className="text-2xl font-semibold">{t('top_tracks')}</h2>
+        <div className="mt-6 sm:mt-8 p-3 sm:p-4 md:p-8 lg:p-10 w-full rounded-lg bg-slate-50 dark:bg-dark shadow-lg">
+            <div className="flex justify-start items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <div className="h-6 sm:h-8 w-2 bg-primary rounded-xl" />
+                <h2 className="text-xl sm:text-2xl font-semibold">{t('top_tracks')}</h2>
             </div>
             <div className="flex flex-col gap-1">
                 {data.tracks.slice(0, 10).map((track, index) => (
@@ -51,10 +51,10 @@ const ArtistTopTracks = ({ artistId }: ArtistTopTracksProps) => {
                         key={track.id} 
                         href={track.external_urls.spotify}
                         target="_blank"
-                        className="flex items-center gap-4 p-2 rounded-md hover:bg-slate-200/50 dark:hover:bg-white/5 transition-colors group"
+                        className="flex items-center gap-2 sm:gap-4 p-2 rounded-md hover:bg-slate-200/50 dark:hover:bg-white/5 transition-colors group"
                     >
-                        <span className="w-6 text-sm text-slate-400 font-medium text-center">{index + 1}</span>
-                        <div className="relative h-10 w-10 overflow-hidden rounded shadow-sm">
+                        <span className="w-4 sm:w-6 text-xs sm:text-sm text-slate-400 font-medium text-center flex-shrink-0">{index + 1}</span>
+                        <div className="relative h-8 w-8 sm:h-10 sm:w-10 overflow-hidden rounded shadow-sm flex-shrink-0">
                             <Image
                                 src={track.album.images[0]?.url || ""}
                                 alt={track.name}
@@ -63,10 +63,10 @@ const ArtistTopTracks = ({ artistId }: ArtistTopTracksProps) => {
                             />
                         </div>
                         <div className="flex flex-col flex-1 min-w-0">
-                            <span className="text-sm font-semibold truncate dark:text-gray-100 group-hover:text-primary transition-colors">{track.name}</span>
-                            <span className="text-xs text-slate-500 dark:text-gray-400 truncate">{track.album.name}</span>
+                            <span className="text-xs sm:text-sm font-semibold truncate dark:text-gray-100 group-hover:text-primary transition-colors">{track.name}</span>
+                            <span className="text-[10px] sm:text-xs text-slate-500 dark:text-gray-400 truncate">{track.album.name}</span>
                         </div>
-                        <span className="text-xs text-slate-400 dark:text-gray-400 tabular-nums">
+                        <span className="text-[10px] sm:text-xs text-slate-400 dark:text-gray-400 tabular-nums flex-shrink-0">
                             {msToTime(track.duration_ms)}
                         </span>
                     </Link>
