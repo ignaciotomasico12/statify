@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getCurrentUserPlaylists } from "@/services/users";
 import { UserPlaylists } from "@/types/playlits";
 import { ExtendedSession } from "@/types/auth";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { PlaylistListItem } from "./playlistListItem";
 import { useTranslations } from "next-intl";
@@ -13,7 +13,6 @@ import Pagination from "@/components/ui/pagination";
 
 export default function PlaylistsList() {
     const t = useTranslations('app.playlists');
-    const queryClient = useQueryClient();
     const { data: session  } = useSession() as { data: ExtendedSession | null };
     
     const [pagination, setPagination] = useState<PaginationProps>({

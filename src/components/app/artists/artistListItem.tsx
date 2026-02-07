@@ -35,8 +35,6 @@ export function ArtistListItem({
   listType,
   pagination,
   aspectRatio = "portrait",
-  width,
-  height,
   isLink = false,
   className,
   ...props

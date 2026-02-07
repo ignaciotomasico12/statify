@@ -7,7 +7,6 @@ import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
-  ContextMenuSeparator,
   ContextMenuTrigger,
 } from "@/components/ui/contextMenu"
 import { Playlist } from "@/types/playlits"
@@ -27,8 +26,6 @@ export function PlaylistListItem({
   playlist,
   index,
   aspectRatio = "square",
-  width,
-  height,
   className,
   ...props
 }: PlaylistListItemProps) {

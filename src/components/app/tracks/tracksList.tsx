@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 import { getCurrentUserSavedTracks, getCurrentUserTopTracks } from "@/services/users";
 import { SavedTracks, TopTracks, Track } from "@/types/tracks";
 import { ExtendedSession } from "@/types/auth";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { TrackListItem } from "./trackListItem";
-import { useTranslations } from "next-intl";
 import { PaginationProps } from "@/types/ui/pagination";
 import Pagination from "@/components/ui/pagination";
 
@@ -16,10 +15,6 @@ interface TracksListProps {
 }
 
 export default function TracksList({ listType }: TracksListProps) {
-    const t = useTranslations('app.artists'); // Reusing some translation keys if appropriate or we might need a dedicated one
-    // Actually, let's use the correct one for tracks if it exists
-    const tt = useTranslations('app.home.userStats.tracks');
-    const queryClient = useQueryClient();
     const { data: session  } = useSession() as { data: ExtendedSession | null };
     
     const [pagination, setPagination] = useState<PaginationProps>({

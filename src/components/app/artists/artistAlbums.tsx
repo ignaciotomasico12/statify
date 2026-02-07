@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ExtendedSession } from "@/types/auth";
 import { getArtistAlbums } from "@/services/artists";
 import { ArtistAlbums as ArtistAlbumsType } from "@/types/artists";
+import { Album } from "@/types/albums";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -39,7 +40,7 @@ const ArtistAlbums = ({ artistId }: ArtistAlbumsProps) => {
     }
 
     // Filter to show only unique album names to avoid duplicates (e.g., standard vs deluxe)
-    const uniqueAlbums = data.items.reduce((acc: any[], current) => {
+    const uniqueAlbums = data.items.reduce((acc: Album[], current) => {
         const x = acc.find(item => item.name === current.name);
         if (!x) {
             return acc.concat([current]);

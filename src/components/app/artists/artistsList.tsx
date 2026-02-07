@@ -83,7 +83,7 @@ export default function ArtistsList({listType = 'followed'}: ListProps) {
 
     useEffect(() => {
         if (artistsQuery.data) {
-            const data = artistsQuery.data as any; // Cast for accessing total/limit across different types
+            const data = artistsQuery.data as Artists | TopArtists;
             const total = listType === 'followed' ? (data as Artists).total : (data as TopArtists).total;
             const limit = listType === 'followed' ? (data as Artists).limit : (data as TopArtists).limit;
 
@@ -94,10 +94,11 @@ export default function ArtistsList({listType = 'followed'}: ListProps) {
             }));
 
             // If we are in followed list, store the cursor for the NEXT page
-            if (listType === 'followed' && data.cursors?.after) {
+            const afterCursor = listType === 'followed' && 'cursors' in data ? data.cursors?.after : undefined;
+            if (afterCursor) {
                 setCursorMap((prev: Record<number, string | undefined>) => ({
                     ...prev,
-                    [pagination.currentPage + 1]: data.cursors.after
+                    [pagination.currentPage + 1]: afterCursor
                 }));
             }
         }
